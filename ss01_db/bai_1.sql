@@ -19,5 +19,7 @@ insert into teacher(name,age,country,class_id)
 values ('Jame',28,'Quảng Trị',1),
 ('Alan',30,'Huế',1),
 ('Walker',32,'Đà Nẵng',1);
-select *
-from teacher;
+SELECT 
+    *
+FROM
+    teacher;
