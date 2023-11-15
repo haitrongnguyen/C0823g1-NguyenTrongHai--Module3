@@ -1,18 +1,19 @@
 create database `student_management`;
 use student_management;
 CREATE TABLE class (
-    class_id INT primary key auto_increment,
+    class_id INT PRIMARY KEY AUTO_INCREMENT,
     `name` VARCHAR(50)
 );
 insert into class(name)
 values ('C0823G1');
 CREATE TABLE teacher (
-    teacher_id INT primary key auto_increment,
+    teacher_id INT PRIMARY KEY AUTO_INCREMENT,
     `name` VARCHAR(50),
     age INT,
     country VARCHAR(50),
-    class_id int,
-    foreign key(class_id) references class(class_id)
+    class_id INT,
+    FOREIGN KEY (class_id)
+        REFERENCES class (class_id)
 );
 insert into teacher(name,age,country,class_id)
 values ('Jame',28,'Quảng Trị',1),
