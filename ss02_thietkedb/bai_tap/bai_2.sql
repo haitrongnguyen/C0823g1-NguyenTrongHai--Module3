@@ -7,7 +7,7 @@ c_name varchar(50),
 c_age int
 );
 
-create table oder(
+create table `order`(
 o_id int primary key auto_increment,
 c_id int,
 o_date date,
@@ -21,11 +21,11 @@ p_name varchar(50),
 p_price int
 );
 
-create  table oder_detail(
+create  table order_detail(
 o_id int,
 p_id int,
 od_qty int,
-foreign key(o_id) references oder(o_id),
+foreign key(o_id) references `order`(o_id),
 foreign key(p_id) references product(p_id),
 primary key(o_id,p_id)
 );
