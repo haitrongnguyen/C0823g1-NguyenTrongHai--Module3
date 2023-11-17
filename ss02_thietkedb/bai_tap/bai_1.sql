@@ -36,7 +36,7 @@ so_dt varchar(20),
 foreign key(ma_ncc) references nha_cc(ma_ncc)
 );
 
-create table phieuxuat_vattu(
+create table phieu_xuat_vat_tu(
 don_gia_xuat long,
 so_luong_xuat int,
 so_phieu_xuat int,
@@ -46,7 +46,7 @@ foreign key(ma_vtu) references vat_tu(ma_vtu),
 primary key(so_phieu_xuat,ma_vtu)
 );
 
-create table phieunhap_vattu(
+create table phieu_nhap_vat_tu(
 don_gia_nhap long,
 so_luong_nhap int,
 so_phieu_nhap int,
