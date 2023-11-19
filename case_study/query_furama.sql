@@ -51,6 +51,18 @@ group by
 
 -- Task 8
 
+SELECT 
+    khach_hang.ho_ten
+FROM
+    khach_hang
+ORDER BY ho_ten;
+
+SELECT 
+    khach_hang.ho_ten
+FROM
+    khach_hang
+ORDER BY ho_ten;
+
     
 -- Task 9
 select month(hd.ngay_lam_hop_dong) as `thang`, count(hd.ma_khach_hang) as `so_khach_hang`
@@ -59,6 +71,19 @@ join hop_dong hd on kh.ma_khach_hang = hd.ma_khach_hang
 where year(hd.ngay_lam_hop_dong) = 2021
 group by thang
 order by thang;
+
+-- Task 10
+SELECT 
+    hop_dong.ma_hop_dong,
+    hop_dong.ngay_lam_hop_dong,
+    hop_dong.ngay_ket_thuc,
+    hop_dong.tien_dat_coc,
+    SUM(IFNULL(hop_dong_chi_tiet.so_luong, 0)) AS so_luong_dich_vu_di_kem
+FROM
+    hop_dong
+        LEFT JOIN
+    hop_dong_chi_tiet ON hop_dong.ma_hop_dong = hop_dong_chi_tiet.ma_hop_dong
+GROUP BY hop_dong.ma_hop_dong;
 
 
 
