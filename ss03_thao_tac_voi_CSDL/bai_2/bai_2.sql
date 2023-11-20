@@ -31,14 +31,15 @@ from `order`;
 
 -- Hiển thị danh sách các khách hàng đã mua hàng, và danh sách sản phẩm được mua bởi các khách
 
-select customer.c_name, product.p_name
+select customer.c_name, group_concat(product.p_name)
 from order_detail 
 join `order` 
 join product
 join customer
 on order_detail.o_id = `order`.o_id 
 and order_detail.p_id = product.p_id 
-and `order`.c_id = customer.c_id;
+and `order`.c_id = customer.c_id
+group by customer.c_name;
 
 -- Hiển thị tên những khách hàng không mua bất kỳ một sản phẩm nào
 
@@ -58,6 +59,6 @@ join order_detail
 join product
 on `order`.o_id = order_detail.o_id
 and order_detail.p_id = product.p_id
-group by `order`.o_id, `order`.o_date;
+group by `order`.o_id;
 
 
