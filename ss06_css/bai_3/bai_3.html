@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .header {
+            display: block;
+            background-color: cornflowerblue;
+        }
+
+        .anh {
+            position: absolute;
+            top: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <img class="anh" style="width: 50px;height: 50px;opacity: 0.2"
+         src="data:image/png;base64,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">
+    <p style="display: inline;margin-left: 50px; padding-bottom: 50px;font-size: 50px">Truyện</p>
+</div>
+<h2 style="text-decoration: underline">THÔNG TIN TRUYỆN</h2>
+<h2 style="text-align: center">THẾ GIỚI HOÀN MỸ</h2>
+<img
+        src="https://static.8cache.com/cover/o/eJzLyTDR100qKnJ08QhzLS0M1A_z8zUJcs0zsMz31HeEghwzA32PJCfTqky_MIOMcv1yI0NT3QxjIyMATdMSHQ==/the-gioi-hoan-my.jpg"
+        alt="thế giới hoàn mỹ">
+<p><b>Tác giả: </b>Thần Đông</p>
+<p><b>Thể loại: </b>Tiên Hiệp, Kiếm Hiệp, Huyền Huyễn</p>
+<p><b>Nguồn: </b>Tàng Thư Viện</p>
+<p><b>Trạng thái: </b> Full</p>
+<p style="font-style: italic">Dịch giả: Ronkute, Yencute, Ryuken, kukhoai, bokinhvan, Kensin_Kaoru, Big Bang, Luciferht,
+    Độc Nhân<br>
+    Một hạt bụi có thể lấp biển, một cọng cỏ chém hết mặt trời mặt trăng và ngôi sao, trong nháy mắt ở giữa long trời lỡ
+    đất. Quần hùng cùng nổi lên, vạn tộc mọc lên san sát như rừng, chư thánh tranh bá, loạn khắp đất trời. Hỏi mặt đất
+    bao la, cuộc đời thăng trầm? Một thiếu niên theo trong đất hoang đi ra, tất cả bắt đầu từ nơi này..</p>
+<h3>Danh sách Chương</h3>
+<hr>
+<ul>
+    <li><a href="https://truyenfull.vn/the-gioi-hoan-my/chuong-1/">Chương 1: Đại Hoang</a></li>
+    <li><a href="https://truyenfull.vn/the-gioi-hoan-my/chuong-2/">Chương 2: Triều khí bừng bừng</a></li>
+    <li><a href="https://truyenfull.vn/the-gioi-hoan-my/chuong-3/">Chương 3: Cốt văn</a></li>
+    <li><a href="https://truyenfull.vn/the-gioi-hoan-my/chuong-4/">Chương 4: Tế Linh</a></li>
+    <li><a href="https://truyenfull.vn/the-gioi-hoan-my/chuong-5/">Chương 5: Tắm thuốc</a></li>
+    <li><a href="https://truyenfull.vn/the-gioi-hoan-my/chuong-6/">Chương 6: Nâng đỉnh</a></li>
+    <li><a href="https://truyenfull.vn/the-gioi-hoan-my/chuong-7/">Chương 7: Chuẩn bị</a></li>
+    <li><a href="https://truyenfull.vn/the-gioi-hoan-my/chuong-8/">Chương 8: Ngô Mộc Sào</a></li>
+    <li><a href="https://truyenfull.vn/the-gioi-hoan-my/chuong-9/">Chương 9: Thanh Lân Ưng</a></li>
+    <li><a href="https://truyenfull.vn/the-gioi-hoan-my/chuong-10/">Chương 10: Hung uy</a></li>
+    <li><a href="https://truyenfull.vn/the-gioi-hoan-my/chuong-11/">Chương 11: Tổ khí</a></li>
+    <li><a href="https://truyenfull.vn/the-gioi-hoan-my/chuong-12/">Chương 12: Phản tổ</a></li>
+    <li><a href="https://truyenfull.vn/the-gioi-hoan-my/chuong-13/">Chương 13: Bí Cốt Bảo Thư</a></li>
+    <li><a href="https://truyenfull.vn/the-gioi-hoan-my/chuong-14/">Chương 14: Triều khí bừng bừng</a></li>
+    <li><a href="https://truyenfull.vn/the-gioi-hoan-my/chuong-15/">Chương 15: Ngang ngược</a></li>
+    <li><a href="https://truyenfull.vn/the-gioi-hoan-my/chuong-16/">Chương 16: Nhóc tỳ ra oai</a></li>
+    <li><a href="https://truyenfull.vn/the-gioi-hoan-my/chuong-17/">Chương 17: Chịu thua</a></li>
+    <li><a href="https://truyenfull.vn/the-gioi-hoan-my/chuong-18/">Chương 18: Bảo Thuật</a></li>
+    <li><a href="https://truyenfull.vn/the-gioi-hoan-my/chuong-19/">Chương 19: Sơn lâm bạo động</a></li>
+    <li><a href="https://truyenfull.vn/the-gioi-hoan-my/chuong-20/">Chương 20: Tranh đoạt</a></li>
+</ul>
+<button>1</button>
+<button>2</button>
+<button>3</button>
+<button>Cuối</button>
+</body>
+</html>
