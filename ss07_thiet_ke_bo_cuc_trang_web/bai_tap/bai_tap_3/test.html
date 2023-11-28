@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .row::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        [class*="col-"] {
+            float: left;
+            padding: 0;
+        }
+
+        .header {
+            height: 50px;
+            width: 100%;
+            background-color: rgb(34, 34, 34);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .header ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header ul li {
+            display: inline-block;
+            min-width: 50px;
+            margin-left: 10px;
+            font-size: 20px;
+            padding-top: 12px;
+
+        }
+        .header ul a{
+            text-decoration: none;
+            color: white;
+        }
+
+        @media only screen and (min-width: 600px) {
+            /* For tablets: */
+            .col-m-1 {
+                width: 8.33%;
+            }
+
+            .col-m-2 {
+                width: 16.66%;
+            }
+
+            .col-m-3 {
+                width: 25%;
+            }
+
+            .col-m-4 {
+                width: 33.33%;
+            }
+
+            .col-m-5 {
+                width: 41.66%;
+            }
+
+            .col-m-6 {
+                width: 50%;
+            }
+
+            .col-m-7 {
+                width: 58.33%;
+            }
+
+            .col-m-8 {
+                width: 66.66%;
+            }
+
+            .col-m-9 {
+                width: 75%;
+            }
+
+            .col-m-10 {
+                width: 83.33%;
+            }
+
+            .col-m-11 {
+                width: 91.66%;
+            }
+
+            .col-m-12 {
+                width: 100%;
+            }
+        }
+
+
+        @media only screen and (min-width: 768px) {
+            /* For desktop: */
+            .col-1 {
+                width: 8.33%;
+            }
+
+            .col-2 {
+                width: 16.66%;
+            }
+
+            .col-3 {
+                width: 25%;
+            }
+
+            .col-4 {
+                width: 33.33%;
+            }
+
+            .col-5 {
+                width: 41.66%;
+            }
+
+            .col-6 {
+                width: 50%;
+            }
+
+            .col-7 {
+                width: 58.33%;
+            }
+
+            .col-8 {
+                width: 66.66%;
+            }
+
+            .col-9 {
+                width: 75%;
+            }
+
+            .col-10 {
+                width: 83.33%;
+            }
+
+            .col-11 {
+                width: 91.66%;
+            }
+
+            .col-12 {
+                width: 100%;
+            }
+        }
+        .box{
+            width: 50%;
+            height: 50%;
+            background-color: #333333;
+            margin: 15px 15px;
+            text-align: center;
+            padding-top: 40px;
+            box-sizing: border-box;
+        }
+        [class*="col-"] {
+            width: 100%;
+        }
+        @media only screen and (max-width: 768px){
+
+        }
+        @media only screen and (min-width: 600px){
+            [class*="col-m"] {
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+<div class="row">
+    <div class="header">
+        <ul>
+            <li><a href="#">Logo</a> </li>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Project</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+        <ul>
+            <li style="padding-right: 15px">Logout</li>
+        </ul>
+    </div>
+    <div class="col-3 col-m-3">
+        <ul>
+            <li><a href="#">link</a></li>
+            <li><a href="#">link</a></li>
+            <li><a href="#">link</a></li>
+        </ul>
+    </div>
+    <div class="col-6 col-m-9">
+        <h1>Welcome</h1>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+            mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+            magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+            commodo consequat.</p>
+        <hr>
+        <h3>Test</h3>
+        <p>Lorem ipsum</p>
+    </div>
+    <div class="col-3 col-m-12">
+        <div class="box">ADS</div>
+        <div class="box">ADS</div>
+    </div>
+</div>
+</body>
+</html>
