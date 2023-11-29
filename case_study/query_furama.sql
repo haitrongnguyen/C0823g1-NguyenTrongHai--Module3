@@ -109,8 +109,8 @@ from khach_hang;
 
     
 -- Task 9 Thực hiện thống kê doanh thu theo tháng, nghĩa là tương ứng với mỗi tháng trong năm 2021 thì sẽ có bao nhiêu khách hàng thực hiện đặt phòng.
-select month(hop_dong.ngay_lam_hop_dong),
-count(hop_dong.ma_khach_hang)
+select month(hop_dong.ngay_lam_hop_dong) as thang,
+count(hop_dong.ma_khach_hang) as so_luong_hop_dong
 from hop_dong
 where year(hop_dong.ngay_lam_hop_dong) = 2021
 group by month(hop_dong.ngay_lam_hop_dong)
@@ -119,26 +119,28 @@ order by month(hop_dong.ngay_lam_hop_dong);
 -- Task 10	Hiển thị thông tin tương ứng với từng hợp đồng thì đã sử dụng bao nhiêu dịch vụ đi kèm. Kết quả hiển thị bao gồm ma_hop_dong, 
 -- ngay_lam_hop_dong, ngay_ket_thuc, tien_dat_coc, so_luong_dich_vu_di_kem (được tính dựa trên việc sum so_luong ở dich_vu_di_kem).
 select hop_dong.ma_hop_dong, hop_dong.ngay_lam_hop_dong, hop_dong.ngay_ket_thuc, hop_dong.tien_dat_coc,
-sum(ifnull(hop_dong_chi_tiet.so_luong,0))
+sum(ifnull(hop_dong_chi_tiet.so_luong,0)) as so_luong, group_concat(dich_vu_di_kem.ten_dich_vu_di_kem) as dich_vu_di_kem
 from hop_dong
 left join hop_dong_chi_tiet
 on hop_dong.ma_hop_dong = hop_dong_chi_tiet.ma_hop_dong
+join dich_vu_di_kem
+on hop_dong_chi_tiet.ma_dich_vu_di_kem = dich_vu_di_kem.ma_dich_vu_di_kem
 group by hop_dong.ma_hop_dong;
 
 -- task 11.	Hiển thị thông tin các dịch vụ đi kèm đã được sử dụng bởi những khách hàng có ten_loai_khach là “Diamond” và có dia_chi ở “Vinh” hoặc “Quảng Ngãi”.
 select dich_vu_di_kem.ma_dich_vu_di_kem, dich_vu_di_kem.ten_dich_vu_di_kem
 from dich_vu_di_kem
-right join hop_dong_chi_tiet
+join hop_dong_chi_tiet
 on hop_dong_chi_tiet.ma_dich_vu_di_kem = dich_vu_di_kem.ma_dich_vu_di_kem
 join hop_dong
 on hop_dong.ma_hop_dong = hop_dong_chi_tiet.ma_hop_dong
 join khach_hang
 on khach_hang.ma_khach_hang = hop_dong.ma_khach_hang
-left join loai_khach
+join loai_khach
 on khach_hang.ma_loai_khach = loai_khach.ma_loai_khach
 where loai_khach.ten_loai_khach = 'Dinamond'
-and khach_hang.dia_chi like '% Vinh'
-or khach_hang.dia_chi like '% Quảng Ngãi';
+and (khach_hang.dia_chi like '% Vinh'
+or khach_hang.dia_chi like '% Quảng Ngãi');
 
 -- task 12.	Hiển thị thông tin ma_hop_dong, ho_ten (nhân viên), ho_ten (khách hàng), so_dien_thoai (khách hàng), ten_dich_vu, so_luong_dich_vu_di_kem
 -- (được tính dựa trên việc sum so_luong ở dich_vu_di_kem), tien_dat_coc của tất cả các dịch vụ đã từng được khách hàng đặt vào 3 tháng cuối năm 2020 
@@ -146,13 +148,13 @@ or khach_hang.dia_chi like '% Quảng Ngãi';
 select hop_dong.ma_hop_dong, nhan_vien.ho_ten, khach_hang.ho_ten, khach_hang.so_dien_thoai,
 dich_vu.ten_dich_vu, hop_dong.tien_dat_coc, sum(ifnull(hop_dong_chi_tiet.so_luong,0))
 from hop_dong
-left join nhan_vien
+join nhan_vien
 on nhan_vien.ma_nhan_vien = hop_dong.ma_nhan_vien
-left join khach_hang
+join khach_hang
 on khach_hang.ma_khach_hang = hop_dong.ma_khach_hang
-left join dich_vu
+join dich_vu
 on dich_vu.ma_dich_vu = hop_dong.ma_dich_vu
-left join hop_dong_chi_tiet
+join hop_dong_chi_tiet
 on hop_dong_chi_tiet.ma_hop_dong = hop_dong.ma_hop_dong
 where month(hop_dong.ngay_lam_hop_dong) in (10,11,12)
 and year(hop_dong.ngay_lam_hop_dong) = 2020
@@ -242,7 +244,8 @@ sql_mode = 0;
 SET 
 sql_mode = 1;
 
-select khach_hang.ma_khach_hang,khach_hang.ho_ten,loai_khach.ten_loai_khach,sum(dich_vu.chi_phi_thue + hop_dong_chi_tiet.so_luong*dich_vu_di_kem.gia)
+create view khach_hang_co_tong_thanh_toan_tren_1000000 as
+select khach_hang.ma_khach_hang,khach_hang.ho_ten,khach_hang.ma_loai_khach,loai_khach.ten_loai_khach,sum(dich_vu.chi_phi_thue + hop_dong_chi_tiet.so_luong*dich_vu_di_kem.gia)
 from khach_hang
 left join loai_khach
 on khach_hang.ma_loai_khach = loai_khach.ma_loai_khach
@@ -257,7 +260,24 @@ on dich_vu_di_kem.ma_dich_vu_di_kem = hop_dong_chi_tiet.ma_dich_vu_di_kem
 where year(hop_dong.ngay_lam_hop_dong) = 2021 
 and loai_khach.ten_loai_khach = 'Platinium'
 group by khach_hang.ma_khach_hang
-having sum(dich_vu.chi_phi_thue + hop_dong_chi_tiet.so_luong*dich_vu_di_kem.gia) > 10000000;
+having sum(dich_vu.chi_phi_thue + hop_dong_chi_tiet.so_luong*dich_vu_di_kem.gia) > 1000000;
+
+select * 
+from khach_hang_co_tong_thanh_toan_tren_1000000;
+
+update khach_hang
+set khach_hang.ma_loai_khach = 1
+where khach_hang.ma_loai_khach in
+(select khach_hang_co_tong_thanh_toan_tren_1000000.ma_loai_khach
+from khach_hang_co_tong_thanh_toan_tren_1000000
+where khach_hang_co_tong_thanh_toan_tren_1000000.ten_loai_khach = 'Platinium'
+);
+
+drop view khach_hang_co_tong_thanh_toan_tren_1000000;
+
+select *
+from khach_hang;
+
 
 -- task 18.	Xóa những khách hàng có hợp đồng trước năm 2021 (chú ý ràng buộc giữa các bảng).
 
@@ -271,6 +291,9 @@ where khach_hang.ma_khach_hang in
 (select hop_dong.ma_khach_hang
 from hop_dong
 where year(hop_dong.ngay_lam_hop_dong) < 2021);
+
+select *
+from khach_hang;
 
 -- task 19.	Cập nhật giá cho các dịch vụ đi kèm được sử dụng trên 10 lần trong năm 2020 lên gấp đôi.
 update dich_vu_di_kem
@@ -302,6 +325,24 @@ khach_hang.ngay_sinh,
 khach_hang.dia_chi
 from khach_hang;
 
+rollback;
+
+-- 21.	Tạo khung nhìn có tên là v_nhan_vien để lấy được thông tin của tất cả các nhân viên có địa chỉ là “Hải Châu” và đã từng lập hợp đồng 
+-- cho một hoặc nhiều khách hàng bất kì với ngày lập hợp đồng là “12/12/2019”.
+create view v_nhan_vien as
+select nhan_vien.*
+from nhan_vien
+join hop_dong
+on hop_dong.ma_nhan_vien = nhan_vien.ma_nhan_vien
+where nhan_vien.dia_chi like '%Hải Châu%'
+and hop_dong.ngay_lam_hop_dong = '20191212';
+
+select *
+from v_nhan_vien;
+
+-- 22.	Thông qua khung nhìn v_nhan_vien thực hiện cập nhật địa chỉ thành “Liên Chiểu” đối với tất cả các nhân viên được nhìn thấy bởi khung nhìn này.
+update v_nhan_vien
+set dia_chi = 'Liên Chiểu';
 
 
 

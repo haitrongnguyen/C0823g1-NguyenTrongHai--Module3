@@ -1,10 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .nav{
+            min-height: 42px;
+            background-color: #EF5122;
+            display: flex;
+            justify-content: space-between;
+        }
+        .nav-list{
+            padding-left: 0;
+            margin: auto 16px;
+        }
+        .nav-item{
+            color: #fff;
+            list-style: none;
+            margin: 0 8px;
+            display: inline-block;
+        }
+        .form_row{
+            padding: 8px 0;
+            display: flex;
+        }
+        .form-container{
+            max-width: 720px;
+            padding: 32px;
+            margin: 36px auto 0 auto;
+            background-color: #fff;
+        }
+        .form_input{
+            flex: 1;
+        }
+        .form_label{
+            min-width: 80px;
+        }
+        .column-layout{
+            margin-top: 36px;
+            padding: 12px 0;
+            background-color: #fff;
+            display: flex;
+        }
+        .column-item{
+            padding: 0 16px;
+            flex: 1;
+        }
+        .sidebar1{
+
+        }
+        .main{
+            
+        }
+        .sidebar2{
+            
+        }
+    </style>
 </head>
 <body>
-$END$
+    <!-- NavBar -->
+    <div class="nav">
+        <ul class="nav-list">
+            <li class="nav-item">Giới thiệu</li>
+            <li class="nav-item">Kết nối</li>
+            <li class="nav-item">Tải ứng dụng</li>
+        </ul>
+        <ul class="nav-list">
+            <li class="nav-item">Đăng Kí</li>
+            <li class="nav-item">Đăng nhập</li>
+        </ul>
+    </div>
+    <!-- Form-layout -->
+    <div class="form-container">
+        <form action="" class="form">
+        <div class="form_row">
+            <label class="form_label" for="name">Name: </label>
+            <input class="form_input" type="text" id="name">
+        </div>
+        <div class="form_row">
+            <label class="form_label" for="password">Password: </label>
+            <input class="form_input" type="password" id="password">
+        </div>
+    </form>
+    </div>
+    <!-- Column_Layout -->
+    <div class="column-layout">
+    <div class="column-item sidebar1">
+        <h2>Sidebar one</h2>
+        <p>Hello</p>
+        <p>Xin Chào</p>
+        <p>Hello Xin Chào</p>
+    </div>
+    <div class="column-item main">
+        <h2>Main</h2>
+        <p>Hello</p>
+        <p>Xin Chào</p>
+        <p>Hello Xin Chào</p>
+    </div>
+    <div class="column-item sidebar2">
+        <h2>Sidebar two</h2>
+        <p>Hello</p>
+        <p>Xin Chào</p>
+        <p>Hello Xin Chào</p>
+    </div>
+</div>
 </body>
 </html>

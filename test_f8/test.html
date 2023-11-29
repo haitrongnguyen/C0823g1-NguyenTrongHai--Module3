@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            box-sizing: border-box;
+            background-color: yellow;
+            
+        }
+        .box1{
+            width: 100px;
+            height: 100px;
+            box-sizing: content-box;
+            background-color: black;
+    
+        }
+        
+            
+        ul ul{
+            visibility: hidden;
+            
+        }
+        
+        ul li:hover ul{
+            visibility: visible;
+        }
+        .ab{
+            list-style: none;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <ul class="ab">
+            <li class="abc">
+                abcd
+                <ul>
+                    <li class="a">a</li>
+                    <li class="a">b</li>
+                </ul>
+            </li>
+            <li>
+                abcd
+                <ul>
+                    <li class="a">a</li>
+                    <li class="a">b</li>
+                </ul>
+            </li>
+            <li>
+                abcd
+                <ul>
+                    <li class="a">a</li>
+                    <li class="a">b</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+</body>
+</html>
