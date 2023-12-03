@@ -22,7 +22,7 @@ public class ProductDiscountCalculator extends HttpServlet {
         double percent = Double.parseDouble(req.getParameter("percent"));
         double amount = price * percent * 0.01;
         double discountPrice = price - amount;
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/index.jsp");
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/display-discount.jsp");
         req.setAttribute("detail", detail);
         req.setAttribute("price", price);
         req.setAttribute("percent", percent);
