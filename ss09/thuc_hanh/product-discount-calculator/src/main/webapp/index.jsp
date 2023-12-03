@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>JSP - Hello World</title>
+    <title>Product Discount Calculator</title>
 </head>
 <body>
 <form action="/display-discount" name="display-discount" method="post">
