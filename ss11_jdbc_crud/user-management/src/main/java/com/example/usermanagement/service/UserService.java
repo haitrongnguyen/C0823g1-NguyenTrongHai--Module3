@@ -42,4 +42,39 @@ public class UserService implements IUserService{
     public List<User> sortByName() {
         return userRepository.sortByName();
     }
+
+    @Override
+    public User getUserById(int id) {
+        return userRepository.getUserById(id);
+    }
+
+    @Override
+    public void insertUser(User user) {
+        userRepository.insertUser(user);
+    }
+
+    @Override
+    public void insertUpdateWithoutTransaction() {
+        userRepository.insertUpdateWithoutTransaction();
+    }
+
+    @Override
+    public List<User> getAllCall() {
+        return userRepository.getAllCall();
+    }
+
+    @Override
+    public void updateUserCall(User user) {
+        userRepository.updateUserCall(user);
+    }
+
+    @Override
+    public void deleteUserCall(int id) {
+        userRepository.deleteUserCall(id);
+    }
+
+    @Override
+    public void addUserTransaction(User user) {
+        userRepository.addUserTransaction(user);
+    }
 }

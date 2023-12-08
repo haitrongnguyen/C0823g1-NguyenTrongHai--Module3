@@ -71,7 +71,8 @@ public class UserServlet extends HttpServlet {
     private void deleteUser(HttpServletRequest req, HttpServletResponse resp) {
         int id = Integer.parseInt(req.getParameter("id"));
         User user = userService.findById(id);
-        userService.deleteUser(id);
+//        userService.deleteUser(id);
+        userService.deleteUserCall(id);
         req.setAttribute("message","Xóa thành công người dùng "+user.getName());
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("delete.jsp");
         try {
@@ -89,7 +90,8 @@ public class UserServlet extends HttpServlet {
         String email = req.getParameter("email");
         String country = req.getParameter("country");
         User user = new User(id,name,email,country);
-        userService.updateUser(user);
+//        userService.updateUser(user);
+        userService.updateUserCall(user);
         req.setAttribute("message", "Thay đổi thông tin người dùng "+name+" thành công!");
         RequestDispatcher dispatcher = req.getRequestDispatcher("edit.jsp");
         try {
@@ -102,25 +104,40 @@ public class UserServlet extends HttpServlet {
     }
 
     private void addNewUser(HttpServletRequest req, HttpServletResponse resp) {
+//        String name = req.getParameter("name");
+//        String email = req.getParameter("email");
+//        String country = req.getParameter("country");
+//        User user = new User(name,email,country);
+//        userService.addNewUser(user);
+//        req.setAttribute("message", "Thêm người dùng "+name+" thành công");
+//        RequestDispatcher dispatcher = req.getRequestDispatcher("create.jsp");
+//                try {
+//            dispatcher.forward(req,resp);
+//        } catch (ServletException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        try {
+//            resp.sendRedirect("/user");
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
         String name = req.getParameter("name");
         String email = req.getParameter("email");
         String country = req.getParameter("country");
-        User user = new User(name,email,country);
-        userService.addNewUser(user);
-        req.setAttribute("message", "Thêm người dùng "+name+" thành công");
+        User user = new User(name, email,country);
+//        userService.insertUser(user);
+        userService.addUserTransaction(user);
         RequestDispatcher dispatcher = req.getRequestDispatcher("create.jsp");
-                try {
+        req.setAttribute("message","Thêm mới thành công");
+        try {
             dispatcher.forward(req,resp);
         } catch (ServletException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-//        try {
-//            resp.sendRedirect("/user");
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
     }
 
 
@@ -147,9 +164,16 @@ public class UserServlet extends HttpServlet {
             case "sort":
                 showListUserSort(req,resp);
                 break;
+            case "test-without-tran":
+                testWithoutTran(req, resp);
+                break;
             default:
                 showListUser(req,resp);
         }
+    }
+
+    private void testWithoutTran(HttpServletRequest req, HttpServletResponse resp) {
+        userService.insertUpdateWithoutTransaction();
     }
 
     private void showListUserSort(HttpServletRequest req, HttpServletResponse resp) {
@@ -196,14 +220,28 @@ public class UserServlet extends HttpServlet {
     }
 
     private void showFormEditUser(HttpServletRequest req, HttpServletResponse resp) {
+//        int id = Integer.parseInt(req.getParameter("id"));
+//        User user = userService.findById(id);
+//        RequestDispatcher dispatcher;
+//        if (user == null){
+//            dispatcher = req.getRequestDispatcher("error-404.jsp");
+//        }else {
+//            req.setAttribute("user",user);
+//            dispatcher = req.getRequestDispatcher("edit.jsp");
+//            try {
+//                dispatcher.forward(req,resp);
+//            } catch (ServletException e) {
+//                e.printStackTrace();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
         int id = Integer.parseInt(req.getParameter("id"));
-        User user = userService.findById(id);
+        User user = userService.getUserById(id);
         RequestDispatcher dispatcher;
+        req.setAttribute("user",user);
         if (user == null){
             dispatcher = req.getRequestDispatcher("error-404.jsp");
-        }else {
-            req.setAttribute("user",user);
-            dispatcher = req.getRequestDispatcher("edit.jsp");
             try {
                 dispatcher.forward(req,resp);
             } catch (ServletException e) {
@@ -211,7 +249,17 @@ public class UserServlet extends HttpServlet {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }else {
+            try {
+                dispatcher = req.getRequestDispatcher("edit.jsp");
+                dispatcher.forward(req,resp);
+            } catch (ServletException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
+
     }
 
 
@@ -227,7 +275,17 @@ public class UserServlet extends HttpServlet {
     }
 
     private void showListUser(HttpServletRequest req, HttpServletResponse resp) {
-        List<User> users = userService.getAll();
+//        List<User> users = userService.getAll();
+//        req.setAttribute("list",users);
+//        RequestDispatcher dispatcher = req.getRequestDispatcher("list.jsp");
+//        try {
+//            dispatcher.forward(req,resp);
+//        } catch (ServletException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+        List<User> users = userService.getAllCall();
         req.setAttribute("list",users);
         RequestDispatcher dispatcher = req.getRequestDispatcher("list.jsp");
         try {
